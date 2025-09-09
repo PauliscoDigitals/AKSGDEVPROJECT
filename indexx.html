@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akwa Ibom Projects</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+    }
+   header {
+  background: #006400;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+header .logos {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+header .logos img {
+  height: 50px;
+  width: auto;
+}
+
+    
+    h2 {
+      text-align: center;
+      margin: 40px 0 20px;
+      color: green;
+      text-transform: uppercase; 
+      padding: 20px;
+    }
+    .umo{
+      text-align: center;
+      color: orange;
+      font-size: 30px;
+
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card-body h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: green;
+    }
+    .card-body p {
+      font-size: 14px;
+      color: #555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      margin-top: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: orange;
+      color: white;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #004d00;
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      position: relative;
+    }
+    .modal-content img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+    /* Slideshow */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .slideshow img {
+      width: 100%;
+      display: none;
+    }
+    .slideshow img.active {
+      display: block;
+    }
+    /* See More */
+    .see-more-content {
+      display: none;
+    }
+    .see-more-btn {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    footer {
+      background: #006600;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-text, .about-image {
+      flex: 1;
+      min-width: 280px;
+      padding: 15px;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    form{
+      max-width: 800px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     margin: 15px; 
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    input, textarea{
+      padding: 10px;
+      width: 90%;
+      border-radius: 7px;
+      margin: 10px;
+    }
+    ul{
+      padding: 10px;
+      margin: 10px;
+    }
+    li{
+      padding: 10px;
+    }
+    .ulimg{
+      width: 100px;
+      display: block;
+    }
+    .imgcard{
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      width: 900px;
+      height: 150px;
+    }
+    .news-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 15px;
+  padding: 1rem;
+  max-width: 800px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.news-card img {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  margin-right: 1rem;
+}
+
+.news-text {
+  flex: 1;
+}
+
+.news-text h3 {
+  margin: 0 0 0.5rem;
+  color: #004d99;
+}
+
+.news-text p {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+/* Styles only for the About slideshow section */
+/* About Slideshow Section */
+.about-slideshow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  gap: 20px;
+}
+
+.about-slideshow .about-text {
+  flex: 1;
+}
+
+.about-slideshow .about-image {
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+}
+
+.about-slideshow .slideshow img {
+  width: 100%;
+  height: auto;
+  display: none;
+  border-radius: 8px;
+}
+
+.about-slideshow .slideshow img.active {
+  display: block;
+}
+
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logos">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20logo.jpg" alt="Akwa Ibom Logo">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/arise.jpg" alt="Arise Logo">
+  </div>
+  <h1>Akwa Ibom State Development Projects</h1>
+</header>
+
+
+<!-- About Section -->
+<section class="about-content">
+  <div class="about-text">
+    <h2>AKWA IBOM DEVELOPMENTAL PROJECTS ✅</h2>
+    <p>
+      Akwa Ibom State, under Governor Umo Eno, is driving impactful projects that touch infrastructure,
+      healthcare, education, agriculture, and tourism. These projects are designed to uplift lives and
+      position the state as an economic hub in Nigeria.
+    </p>
+    <p>
+      Explore some of the ongoing and completed projects showcasing Akwa Ibom’s transformation.
+    </p>
+  </div>
+  <div class="about-image">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/umoeno2.jpg" alt="Governor Umo Eno">
+  </div>
+</section>
+
+<!-- Development Projects -->
+<h2>Development Projects</h2>
+<div class="grid" id="development-projects">
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibom%20tower2.jpg" alt="Ibom Tower">
+    <div class="card-body">
+      <h3>Ibom Tower</h3>
+      <p>A landmark project symbolizing Akwa Ibom’s unity and progress.</p>
+      <button class="btn" onclick="openModal('ibomTower')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibomhos.jpg" alt="Ibom Specialist Hospital">
+    <div class="card-body">
+      <h3>Ibom Specialist Hospital</h3>
+      <p>World-class healthcare facility providing modern medical services.</p>
+      <button class="btn" onclick="openModal('ibomHospital')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/empowerment.jpg" alt="Empowerment">
+    <div class="card-body">
+      <h3>Empowerment Initiatives</h3>
+      <p>SME support, skill training, and ARISE Initiative for youths and women.</p>
+      <button class="btn" onclick="openModal('empowerment')">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<div class="see-more-content" id="more-dev-projects">
+  <div class="grid">
+    <div class="card">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Sports">
+      <div class="card-body">
+        <h3>Sports</h3>
+        <p>Sport festivals engaging youth to bring up talented youths.</p>
+        <button class="btn" onclick="openModal('sports')">Learn More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/festival.jpg" alt="Festivals">
+      <div class="card-body">
+        <h3>Festivals</h3>
+        <p>Annual Christmas Village and cultural festivals celebrating heritage.</p>
+        <button class="btn" onclick="openModal('festivals')">Learn More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/tourism.jpg" alt="Tourist Sites">
+      <div class="card-body">
+        <h3>Tourist Sites</h3>
+        <p>Ibeno Beach, Ibom Plaza, Unity Park and many other attractions.</p>
+        <button class="btn" onclick="openModal('tourism')">Learn More</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn see-more-btn" onclick="toggleSeeMore('more-dev-projects', this)">See More</button>
+
+<!-- Commissioned Projects -->
+<h2>Projects Commissioned by Gov. Umo Eno</h2>
+<div class="grid" id="commissioned-projects">
+  <div class="card">
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/road.jpg" alt="Etinan–Eket Road">
+    <div class="card-body">
+      <h3>Etinan – Eket Road</h3>
+      <p>Commissioned to ease transportation and boost commerce.</p>
+      <button class="btn" onclick="openModal('roadProject')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/model.jpg" alt="Model Primary Schools">
+    <div class="card-body">
+      <h3>Model Primary Schools</h3>
+      <p>Modern schools with ICT, libraries, and conducive learning facilities.</p>
+      <button class="btn" onclick="openModal('schoolsProject')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/hospital.jpg" alt="Healthcare">
+    <div class="card-body">
+      <h3>Primary Healthcare Centres</h3>
+      <p>Renovated and equipped PHCs across LGAs to improve access to healthcare.</p>
+      <button class="btn" onclick="openModal('phcProject')">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<div class="see-more-content" id="more-commissioned-projects">
+  <div class="grid">
+    <div class="card">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/agriculture.jpg" alt="Agriculture">
+      <div class="card-body">
+        <h3>ARISE Agricultural Revolution</h3>
+        <p>Boosting food security, mechanized farming, and youth agro-training.</p>
+        <button class="btn" onclick="openModal('agricultureProject')">Learn More</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/skills.jpg" alt="Skills Village">
+      <div class="card-body">
+        <h3>Ibom Model Skills Village</h3>
+        <p>Vocational training hub for ICT, fashion, catering, and technology skills.</p>
+        <button class="btn" onclick="openModal('skillsProject')">Learn More</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn see-more-btn" onclick="toggleSeeMore('more-commissioned-projects', this)">See More</button>
+
+<!--  -->
+<h2>REVIEWS ABOUT AKWA IBOM STATE</h2>
+<div class="grid" id="gallery">
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibomtower.jpg" alt="Ibom Tower">
+    <div class="card-body">
+      <h3>Ibom Tower</h3></div></div>
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibom%20tropicana.jpg" alt="Ibom Tropicana">
+    <div class="card-body">
+      <h3>Ibom Tropicana</h3></div></div>
+  <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/plaza.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Ibom Plaza</h3></div></div>
+  <div class="card"><img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibom%20seaport2.jpg" alt="Ibom Deep Seaport">
+    <div class="card-body">
+      <h3>Ibom Deep Seaport</h3></div></div>
+  <div class="card">
+    <div class="slideshow" id="ibomAirSlides">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibomair.jpg" alt="Ibom Air" class="active">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibomtower.jpg.jpg" alt="Ibom Air">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibom%20tropicana.jpg" alt="Ibom Air">
+    </div>
+    <div class="card-body"><h3>Ibom Air</h3></div>
+  </div>
+   <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20secure.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Ibom Security</h3></div></div>
+       <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20stad.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Ibom Stadium</h3></div></div>
+       <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20library.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Ibom E-Library</h3></div></div>
+       <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20uni.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Akwa Ibom State University(AKSU)</h3></div></div>
+        <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/aks%20poly.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Akwa Ibom State Polytechnic(AKWAPOLY)</h3></div></div>
+
+ <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibeno%20beach.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>Ibeno Beach</h3></div></div>
+ <div class="card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/intl%20worship%20center.jpg" alt="Ibom Plaza">
+    <div class="card-body">
+      <h3>International Worship Center</h3></div></div>
+</div>
+
+<section id="news" style="text-align: left;">
+  <h2>Akwa Ibom State Trending News</h2>
+
+  <div class="news-card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Ibom Air expansion">
+    <div class="news-text">
+      <h3>Flag off of Ibom Sport Festival</h3>
+      <p>Governor Umo Eno flags off the ibom Sport Festival 2025 at the uyo township stadium on Monday 3rd September, 2025.</p>
+    </div>
+  </div>
+    <div class="news-card">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Ibom Air expansion">
+    <div class="news-text">
+      <h3>Governor Approves Sports Academy in Eket</h3>
+      <p>Governor Umo Eno, during the opening of the Akwa Ibom Sports Festival 2025, approved the establishment of a sports academy in Eket LGA. The government has begun purchasing world-class sporting equipment, and is also developing modern facilities such as a nine-hole golf course and indoor/outdoor games center at the upcoming ARISE Resort Park, set to open in December 2025</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <img src="images/news2.jpg" alt="Road project">
+    <div class="news-text">
+      <h3>Firms Join Forces to Drive Entrepreneurship</h3>
+      <p>A landmark collaboration has been formed between the Davidson Foundation, Akwa Ibom State Association in the Netherlands (AKISAN), and Start Innovation Hub (SIH). The partnership, recently signed in Uyo, aims to empower Akwa Ibom’s youth with digital skills, focusing on machine learning, entrepreneurship, and creative innovation—all to bolster participation in the digital economy.</p>
+    </div>
+  </div>
+  <div class="see-more-content" id="more-news">
+   <div class="news-card" id="more-news">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Ibom Air expansion">
+    <div class="news-text">
+      <h3>Governor Approves Sports Academy in Eket</h3>
+      <p>Governor Umo Eno, during the opening of the Akwa Ibom Sports Festival 2025, approved the establishment of a sports academy in Eket LGA. The government has begun purchasing world-class sporting equipment, and is also developing modern facilities such as a nine-hole golf course and indoor/outdoor games center at the upcoming ARISE Resort Park, set to open in December 2025</p>
+    </div>
+  </div>
+   <div class="news-card" id="more-news">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Ibom Air expansion">
+    <div class="news-text">
+      <h3>Governor Approves Sports Academy in Eket</h3>
+      <p>Governor Umo Eno, during the opening of the Akwa Ibom Sports Festival 2025, approved the establishment of a sports academy in Eket LGA. The government has begun purchasing world-class sporting equipment, and is also developing modern facilities such as a nine-hole golf course and indoor/outdoor games center at the upcoming ARISE Resort Park, set to open in December 2025</p>
+    </div>
+  </div>
+   <div class="news-card" id="more-news">
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/1757359340146.jpg" alt="Ibom Air expansion">
+    <div class="news-text">
+      <h3>Governor Approves Sports Academy in Eket</h3>
+      <p>Governor Umo Eno, during the opening of the Akwa Ibom Sports Festival 2025, approved the establishment of a sports academy in Eket LGA. The government has begun purchasing world-class sporting equipment, and is also developing modern facilities such as a nine-hole golf course and indoor/outdoor games center at the upcoming ARISE Resort Park, set to open in December 2025</p>
+    </div>
+  </div>
+  </div>
+  
+</section>
+<button class="btn see-more-btn" onclick="toggleSeeMore('more-news', this)">See More News</button>
+
+
+<!-- About Slideshow -->
+
+
+<section class="about-slideshow">
+  <div class="about-text">
+    <h3 class="umo">Facts about Governor Umo Eno Foresight</h3>
+    <p>
+      Akwa Ibom State, under Governor Umo Eno, is driving impactful projects that touch infrastructure,
+      healthcare, education, agriculture, and tourism. These projects are designed to uplift lives and
+      position the state as an economic hub in Nigeria.
+    </p>
+    <p>
+      Explore some of the ongoing and completed projects showcasing Akwa Ibom’s transformation.
+    </p>
+  </div>
+
+  <div class="about-image">
+    <div class="slideshow">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/working%20umo%20eno.jpg" alt="About Akwa Ibom" class="active">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/umo%20const.jpg" alt="Governor Umo Eno leading a project">
+      <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/umo%20eno%20tour.jpg" alt="State development">
+     <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/bui.jpg" alt="Building sight">
+     <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/umoeno2.jpg" alt="Governor">
+     <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/umoeno.jpg" alt="Gov. Eno">
+     </div>
+  </div>
+</section>
+
+
+  <center><form id="post">
+  <h2>For Contact and Enquires</h2>
+  <p style="text-align: center;">Please fill the required information below</p>
+  
+    <Input type="text" placeholder="Full Name" required><br><br>
+      <input type="number" placeholder="Phone number" required><br><br>
+      <Input type="text" placeholder="Subject" required><br><br>
+      <input type="email" placeholder="Email Address" required><br><br>
+      <textarea placeholder="Message...." required></textarea><br><br>
+      <input type="checkbox"  style=" float: right;" required>Suscribe to our newsletter to receive updates from us.<br>
+      <button type="Submit" conclick=" window.alert('Request Sent Successfully, You will receive feedback shortly.')" style="text-align: center; padding: 10px; border-radius: 10px; background-color: green; color: white;" >Submit</button>
+      
+  </form></center>
+
+
+<footer>
+  <p>Website created by Paulisco Digitals and dedicated to Governor Umo Eno © 2025</p>
+</footer>
+
+<!-- Modals -->
+<div class="modal" id="ibomTower">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ibomTower')">&times;</span>
+    <h2>Ibom Tower</h2>
+    <p>The Ibom Tower is a symbol of Akwa Ibom unity, designed to attract tourists and serve as a hub for cultural events.</p>
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibom%20tower2.jpg" alt="Ibom Tower">
+    <p><strong>Location:</strong> Lagos</p>
+    <p><strong>Handled by:</strong> Akwa Ibom State Ministry of Works</p>
+    <p><strong>Manager:</strong> Engr. Bassey Udoh</p>
+  </div>
+</div>
+
+<div class="modal" id="ibomHospital">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ibomHospital')">&times;</span>
+    <h2>Ibom Specialist Hospital</h2>
+    <p>Equipped with state-of-the-art medical facilities, this hospital provides world-class healthcare services to residents.</p>
+    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/ibomspe.jpg" alt="Ibom Hospital">
+    <p><strong>Location:</strong> AKA Road, Uyo</p>
+    <p><strong>Handled by:</strong> Akwa Ibom State Ministry of Works</p>
+    <p><strong>Manager:</strong> Engr. Bassey Udoh</p>
+  </div>
+</div>
+
+<div class="modal" id="empowerment">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('empowerment')">&times;</span>
+    <h2>Empowerment Programs</h2>
+    <p>The ARISE initiative provides youth and women with training, microloans, and start-up kits in diverse sectors like ICT, fashion, catering, and farming.</p>
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/empowerment.jpg" alt="Empowerment">
+  </div>
+</div>
+
+<div class="modal" id="sports">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('sports')">&times;</span>
+    <h2>Sports Development</h2>
+    <p>The state invests in youth sports, with Godswill Akpabio Stadium hosting international matches and athletics events.</p>
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/stadium.jpg" alt="Stadium">
+  </div>
+</div>
+
+<div class="modal" id="festivals">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('festivals')">&times;</span>
+    <h2>Festivals</h2>
+    <p>Events such as the Christmas Village and cultural carnivals attract thousands of visitors, showcasing Akwa Ibom’s rich culture.</p>
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/festival.jpg" alt="Festival">
+  </div>
+</div>
+
+<div class="modal" id="tourism">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('tourism')">&times;</span>
+    <h2>Tourism</h2>
+    <p>Top sites include Ibeno Beach, Ibom Plaza, and Unity Park, making Akwa Ibom a growing tourist destination.</p>
+    <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/tourism.jpg" alt="Tourism">
+  </div>
+</div>
+
+<!-- Commissioned Projects Modals with Slideshow -->
+<div class="modal" id="roadProject">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('roadProject')">&times;</span>
+    <h2>Etinan – Eket Road</h2>
+    <div class="slideshow" id="roadSlides">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/road.jpg" class="active">
+      <img src="https://pbs.twimg.com/media/FvB-JxaWwAAy01A.jpg" alt="Etinan Road 2">
+      <img src="https://pbs.twimg.com/media/FvB-JxZWcAMl3Dl.jpg" alt="Etinan Road 3">
+    </div>
+    <p><strong>Commissioned:</strong> 2023 by Governor Umo Eno</p>
+    <p><strong>Handled by:</strong> Akwa Ibom State Ministry of Works</p>
+    <p><strong>Manager:</strong> Engr. Bassey Udoh</p>
+    <p>The Etinan – Eket Road project eases transportation, boosts commerce, and connects communities.</p>
+  </div>
+</div>
+
+<div class="modal" id="schoolsProject">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('schoolsProject')">&times;</span>
+    <h2>Model Primary Schools</h2>
+    <div class="slideshow" id="schoolSlides">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/school.jpg" class="active">
+      <img src="https://pbs.twimg.com/media/Fvk5OZYXsAIhBoz.jpg" alt="School 2">
+      <img src="https://pbs.twimg.com/media/Fvk5OZYWcAEtyb0.jpg" alt="School 3">
+    </div>
+    <p><strong>Commissioned:</strong> 2023 by Governor Umo Eno</p>
+    <p><strong>Handled by:</strong> State Universal Basic Education Board (SUBEB)</p>
+    <p><strong>Manager:</strong> Dr. Imo Imo</p>
+    <p>The schools are equipped with ICT labs, libraries, and modern facilities to boost quality education.</p>
+  </div>
+</div>
+
+<div class="modal" id="phcProject">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('phcProject')">&times;</span>
+    <h2>Primary Healthcare Centres</h2>
+    <div class="slideshow" id="phcSlides">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/hospital.jpg" class="active">
+      <img src="https://pbs.twimg.com/media/FxUOoFVWwAEc8Ic.jpg" alt="PHC 2">
+      <img src="https://pbs.twimg.com/media/FxUOoFYXgAEy7cV.jpg" alt="PHC 3">
+    </div>
+    <p><strong>Commissioned:</strong> 2023</p>
+    <p><strong>Handled by:</strong> Akwa Ibom State Ministry of Health</p>
+    <p><strong>Manager:</strong> Dr. Ekemini Umoh</p>
+    <p>Renovated PHCs across LGAs improve access to healthcare, maternal and child health services.</p>
+  </div>
+</div>
+
+<div class="modal" id="agricultureProject">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('agricultureProject')">&times;</span>
+    <h2>ARISE Agricultural Revolution</h2>
+    <div class="slideshow" id="agriSlides">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/agriculture.jpg" class="active">
+      <img src="https://pbs.twimg.com/media/Fz8XcR5WAAAtYd0.jpg" alt="Agri 2">
+      <img src="https://pbs.twimg.com/media/Fz8XcR6XwAEuF7t.jpg" alt="Agri 3">
+    </div>
+    <p><strong>Commissioned:</strong> 2024</p>
+    <p><strong>Handled by:</strong> Ministry of Agriculture & Rural Development</p>
+    <p><strong>Manager:</strong> Engr. Michael Effiong</p>
+    <p>This initiative promotes mechanized farming, youth agro-training, and food security across Akwa Ibom.</p>
+  </div>
+</div>
+
+<div class="modal" id="skillsProject">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('skillsProject')">&times;</span>
+    <h2>Ibom Model Skills Village</h2>
+    <div class="slideshow" id="skillsSlides">
+      <img src="https://www.akwaibomstate.gov.ng/wp-content/uploads/2023/12/skills.jpg" class="active">
+      <img src="https://pbs.twimg.com/media/Fv4JczJXgAIiX6u.jpg" alt="Skills 2">
+      <img src="https://pbs.twimg.com/media/Fv4JczHWYAAgeXm.jpg" alt="Skills 3">
+    </div>
+    <p><strong>Commissioned:</strong> 2024</p>
+    <p><strong>Handled by:</strong> Ministry of Education</p>
+    <p><strong>Manager:</strong> Mrs. Eno Ekpenyong</p>
+    <p>A hub for ICT, catering, fashion design, and technical training aimed at youth empowerment.</p>
+  </div>
+</div>
+
+<script>
+// Open & Close Modal with Slideshow
+let slideshowIntervals = {};
+
+function openModal(id) {
+  document.getElementById(id).style.display = 'flex';
+  startSlideshow(id);
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+  if (slideshowIntervals[id]) {
+    clearInterval(slideshowIntervals[id]);
+    delete slideshowIntervals[id];
+  }
+}
+
+function toggleSeeMore(sectionId, btn) {
+  const section = document.getElementById(sectionId);
+  if (section.style.display === 'block') {
+    section.style.display = 'none';
+    btn.innerText = 'See More';
+  } else {
+    section.style.display = 'block';
+    btn.innerText = 'See Less';
+  }
+}
+
+function startSlideshow(modalId) {
+  const slideshows = document.querySelectorAll(`#${modalId} .slideshow`);
+  slideshows.forEach(slideshow => {
+    let slides = slideshow.querySelectorAll("img");
+    let index = 0;
+    if (slides.length > 0) {
+      slides[0].classList.add('active');
+    }
+    if (slideshowIntervals[modalId]) {
+      clearInterval(slideshowIntervals[modalId]);
+    }
+    slideshowIntervals[modalId] = setInterval(() => {
+      slides.forEach(s => s.classList.remove('active'));
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3000);
+  });
+}
+
+// About Section Slideshow
+document.addEventListener("DOMContentLoaded", function () {
+  let slides = document.querySelectorAll(".about-slideshow .slideshow img");
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach((img, idx) => {
+      img.classList.toggle("active", idx === i);
+    });
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  // Show the first image
+  showSlide(index);
+
+  // Start slideshow every 3 seconds
+  setInterval(nextSlide, 3000);
+});
+</script>
+
+</body>
+</html>
