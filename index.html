@@ -187,20 +187,43 @@ header h1 {
       width: 100%;
       border-radius: 10px;
     }
-    form{
-      max-width: 800px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-     margin: 15px; 
-      text-align: center;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    input, textarea{
-      padding: 10px;
-      width: 90%;
-      border-radius: 7px;
-      margin: 10px;
-    }
+    form#contact-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 15px;
+  background: #f4f6f9;
+  border-radius: 8px;
+}
+
+form#contact-form input,
+form#contact-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.checkbox-label input {
+  margin-right: 6px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+      }
+    
     ul{
       padding: 10px;
       margin: 10px;
@@ -791,6 +814,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
