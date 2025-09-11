@@ -316,7 +316,6 @@ form#contact-form textarea {
 <header>
   <div class="logos">
     <img src="https://akwaibomstate.gov.ng/wp-content/uploads/2023/07/AKS-Logo-2.webp" alt="Akwa Ibom Logo">
-    <img src="file:///C:/Users/EDIDIONG%20UKPONG/Pictures/New%20folder/arise.jpg" alt="Arise Logo">
   </div>
   <h1>Akwa Ibom State Development Projects</h1>
 </header>
@@ -813,12 +812,17 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("contact-form").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const email = "pauludofia12@gmail.com"; // <-- put your email here
+  const email = "pauludofia12@gmail.com"; // <-- change to your email
   const subject = encodeURIComponent(document.getElementById("subject").value);
+  const name = encodeURIComponent(document.getElementById("fullname").value);
+  const from = encodeURIComponent(document.getElementById("email").value);
   const message = encodeURIComponent(document.getElementById("message").value);
 
-  // Build mailto link
-  const mailtoLink = `mailto:${email}?subject=${subject}&body=${message}`;
+  // Put name + email + message into the body
+  const body = `From: ${name} (${from})%0D%0A%0D%0A${message}`;
+
+  // Full mailto link
+  const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
 
   // Open email client
   window.location.href = mailtoLink;
@@ -827,6 +831,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
