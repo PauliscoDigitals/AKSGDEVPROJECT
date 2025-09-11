@@ -555,18 +555,20 @@ header h1 {
 </section>
 
 
-  <center><form id="post">
-  <h2>For Contact and Enquires</h2>
-  <p style="text-align: center;">Please fill the required information below</p>
-  
-    <Input type="text" placeholder="Full Name" required><br><br>
-      <input type="number" placeholder="Phone number" required><br><br>
-      <Input type="text" placeholder="Subject" required><br><br>
-      <input type="email" placeholder="Email Address" required><br><br>
-      <textarea placeholder="Message...." required></textarea><br><br>
-      <input type="checkbox"  style=" float: right;" required>Suscribe to our newsletter to receive updates from us.<br>
-      <button type="Submit" conclick=" window.alert('Request Sent Successfully, You will receive feedback shortly.')" style="text-align: center; padding: 10px; border-radius: 10px; background-color: green; color: white;" >Submit</button>
-      
+  <center><<form id="contact-form">
+  <h2>Contact Form</h2>
+
+  <input type="text" name="fullname" placeholder="Full Name" required>
+  <input type="email" name="email" placeholder="Email Address" required>
+  <input type="text" id="subject" name="subject" placeholder="Subject" required>
+  <textarea name="message" id="message" placeholder="Message..." required></textarea>
+
+  <label class="checkbox-label">
+    <input type="checkbox" name="subscribe">
+    Subscribe to our newsletter
+  </label>
+
+  <button type="submit" class="submit-btn">Send</button>
   </form></center>
 
 
@@ -789,6 +791,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
