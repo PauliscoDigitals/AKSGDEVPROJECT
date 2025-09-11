@@ -577,13 +577,13 @@ form#contact-form textarea {
 </section>
 
 
-  <center><<form id="contact-form">
+  <center><form id="contact-form">
   <h2>Contact Form</h2>
 
-  <input type="text" name="fullname" placeholder="Full Name" required>
-  <input type="email" name="email" placeholder="Email Address" required>
+  <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+  <input type="email" id="email" name="email" placeholder="Email Address" required>
   <input type="text" id="subject" name="subject" placeholder="Subject" required>
-  <textarea name="message" id="message" placeholder="Message..." required></textarea>
+  <textarea id="message" name="message" placeholder="Message..." required></textarea>
 
   <label class="checkbox-label">
     <input type="checkbox" name="subscribe">
@@ -591,6 +591,7 @@ form#contact-form textarea {
   </label>
 
   <button type="submit" class="submit-btn">Send</button>
+      </form>
   </form></center>
 
 
@@ -831,6 +832,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
